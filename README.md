@@ -1,37 +1,34 @@
-# ewem
+## 平台介绍
+#### 目前二维码应用非常广泛，生产制造、品牌溯源、农产品、移动巡检、快消品。大企业根据自己的经营特点定制开发。但中小企业很难找到符合自身需求的标准化产品，定制化开发的高成本也让中小企业望而却步。
+#### 故开发一套应用一物一码的轮子，欢迎各位 Watch、Star。
 
-#### 介绍
-基于一物一码平台，可应用生产制造、品牌溯源、农产品、移动巡检、快消品、防伪、溯源营销
-
-#### 软件架构
-软件架构说明
-
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+## 内置功能
+<img src="https://img04.sogoucdn.com/app/a/100520146/68b62be615ef436ca3c64729e246b79d" alt="内置功能"/>
 
 
-#### 特技
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+## 技术选型
+* 前端采用Vue、Element UI。
+* 后端采用Spring Boot、Spring Security、Redis & Jwt。
+* 权限认证使用Jwt，支持多终端认证系统。
+* 吃水不忘挖井人，特别感谢：[Ruoyi](https://gitee.com/y_project/RuoYi)。
+
+## 二维码知识
+* https://www.qrcode.com
+* https://zhuanlan.zhihu.com/p/21463650
+* [微信一物一码官方文档](https://developers.weixin.qq.com/doc/offiaccount/Unique_Item_Code/Unique_Item_Code_API_Documentation.html)
+
+
+## 应用场景
+<img  src="https://img03.sogoucdn.com/app/a/100520146/89a6dba908336704a941a88a6b401ef3" alt="应用领域"/>
+
+## 合作联系
+<img width="40%" src="https://img01.sogoucdn.com/app/a/100520146/f9e75de9cefbcb0525cf958090dc8d34" alt="应用领域"/>
+
+## 交流群
+
+QQ群：[![加入QQ群](https://img.shields.io/badge/200735978-blue.svg)](https://jq.qq.com/?_wv=1027&k=hTeVDdjn)  点击按钮入群。
+   
+   
+
+<h5>开源不易，请遵守Apache License2.0 协议</h5>
