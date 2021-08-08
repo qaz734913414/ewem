@@ -1,8 +1,8 @@
 {
   "name": "ewem",
-  "version": "3.6.0",
-  "description": "若依管理系统",
-  "author": "若依",
+  "version": "1.0.0",
+  "description": "一物一码系统",
+  "author": "ewem",
   "license": "MIT",
   "scripts": {
     "dev": "vue-cli-service serve",

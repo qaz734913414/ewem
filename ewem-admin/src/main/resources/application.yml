@@ -1,9 +1,9 @@
 # 项目相关配置
 ewem:
   # 名称
-  name: Ewem
+  name: ewem
   # 版本
-  version: 3.6.0
+  version: 1.0.0
   # 版权年份
   copyrightYear: 2021
   # 实例演示开关
