@@ -23,7 +23,7 @@
 <img  src="https://img-blog.csdnimg.cn/8bfdf596398e4dcaab744e9506dbd20a.png" alt="应用领域"/>
 
 ## 合作联系
-![](https://images.gitee.com/uploads/images/2021/0809/223541_b753fc4c_1225299.jpeg "微信图片_20210809221009.jpg") 
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0809/223955_3ef4e39b_1225299.png "合作联系")
 
 
 
