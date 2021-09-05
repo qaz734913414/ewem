@@ -24,9 +24,9 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     public static String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 
     private static String[] parsePatterns = {
-            "yyyy-MM-dd" , "yyyy-MM-dd HH:mm:ss" , "yyyy-MM-dd HH:mm" , "yyyy-MM" ,
-            "yyyy/MM/dd" , "yyyy/MM/dd HH:mm:ss" , "yyyy/MM/dd HH:mm" , "yyyy/MM" ,
-            "yyyy.MM.dd" , "yyyy.MM.dd HH:mm:ss" , "yyyy.MM.dd HH:mm" , "yyyy.MM"};
+            "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy-MM",
+            "yyyy/MM/dd", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm", "yyyy/MM",
+            "yyyy.MM.dd", "yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd HH:mm", "yyyy.MM"};
 
     /**
      * 获取当前Date型日期
@@ -131,5 +131,30 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         // 计算差多少秒//输出结果
         // long sec = diff % nd % nh % nm / ns;
         return day + "天" + hour + "小时" + min + "分钟";
+    }
+
+
+    /**
+     * Format date by 'yyyy-MM-dd' pattern
+     *
+     * @param date
+     * @return
+     */
+    public static String formatByDayPattern(Date date) {
+        if (date != null) {
+            return DateFormatUtils.format(date, YYYY_MM_DD);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Format date by 'yyyy-MM-dd HH:mm:ss' pattern
+     *
+     * @param date
+     * @return
+     */
+    public static String formatByDateTimePattern(Date date) {
+        return DateFormatUtils.format(date, YYYY_MM_DD_HH_MM_SS);
     }
 }

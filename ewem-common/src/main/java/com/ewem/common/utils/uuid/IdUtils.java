@@ -41,4 +41,13 @@ public class IdUtils {
     public static String fastSimpleUUID() {
         return UUID.fastUUID().toString(true);
     }
+
+    /**
+     * 简化的UUID，去掉了横线，转大写，使用性能更好的ThreadLocalRandom生成UUID
+     *
+     * @return 简化的UUID，去掉了横线
+     */
+    public static String fastSimpleUUIDUpperCase() {
+        return UUID.fastUUID().toString(true).toUpperCase();
+    }
 }

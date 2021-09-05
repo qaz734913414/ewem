@@ -3,7 +3,8 @@
 #### 故开发一套应用一物一码的轮子，欢迎各位 Watch、Star。
 
 ## 内置功能
-<img src="https://img04.sogoucdn.com/app/a/100520146/68b62be615ef436ca3c64729e246b79d" alt="内置功能"/>
+<img src="https://www.processon.com/view/link/61112f62f346fb2a2e9d0111" alt="内置功能"/>
+<iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:525px; height:245px;" src="https://www.processon.com/embed/610dddeb5653bb6d0a6a3224"></iframe>
 
 
 
@@ -32,3 +33,4 @@ QQ群：[![加入QQ群](https://img.shields.io/badge/200735978-blue.svg)](https:
    
 
 <h5>开源不易，请遵守Apache License2.0 协议</h5>
+点击链接加入群聊【一物一码系统交流】：https://jq.qq.com/?_wv=1027&k=TMT5BEIc

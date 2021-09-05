@@ -35,6 +35,11 @@
             <artifactId>ewem-common</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.ewem</groupId>
+            <artifactId>ewem-code</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

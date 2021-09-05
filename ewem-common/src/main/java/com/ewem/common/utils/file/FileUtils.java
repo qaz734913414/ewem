@@ -1,25 +1,21 @@
 package com.ewem.common.utils.file;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import cn.hutool.core.io.FileUtil;
+import com.ewem.common.utils.StringUtils;
+import org.apache.commons.lang3.ArrayUtils;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang3.ArrayUtils;
-import com.ewem.common.utils.StringUtils;
+import java.io.*;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 文件处理工具类
  *
  * @author ewem
  */
-public class FileUtils {
+public class FileUtils extends FileUtil {
     public static String FILENAME_PATTERN = "[a-zA-Z0-9_\\-\\|\\.\\u4e00-\\u9fa5]+";
 
     /**
@@ -123,7 +119,7 @@ public class FileUtils {
         if (agent.contains("MSIE")) {
             // IE浏览器
             filename = URLEncoder.encode(filename, "utf-8");
-            filename = filename.replace("+" , " ");
+            filename = filename.replace("+", " ");
         } else if (agent.contains("Firefox")) {
             // 火狐浏览器
             filename = new String(fileName.getBytes(), "ISO8859-1");
@@ -155,7 +151,7 @@ public class FileUtils {
                 .append("utf-8''")
                 .append(percentEncodedFileName);
 
-        response.setHeader("Content-disposition" , contentDispositionValue.toString());
+        response.setHeader("Content-disposition", contentDispositionValue.toString());
     }
 
     /**
@@ -166,6 +162,6 @@ public class FileUtils {
      */
     public static String percentEncode(String s) throws UnsupportedEncodingException {
         String encode = URLEncoder.encode(s, StandardCharsets.UTF_8.toString());
-        return encode.replaceAll("\\+" , "%20");
+        return encode.replaceAll("\\+", "%20");
     }
 }

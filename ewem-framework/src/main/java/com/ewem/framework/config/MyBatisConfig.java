@@ -30,7 +30,7 @@ import com.ewem.common.utils.StringUtils;
  *
  * @author ewem
  */
-@Configuration
+//@Configuration
 public class MyBatisConfig {
     @Autowired
     private Environment env;

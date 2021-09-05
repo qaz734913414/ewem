@@ -1,15 +1,14 @@
 package com.ewem.common.utils;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.lang.Validator;
+import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.ReUtil;
+import cn.hutool.core.util.StrUtil;
 
-import org.springframework.util.AntPathMatcher;
-import com.ewem.common.constant.Constants;
-import com.ewem.common.core.text.StrFormatter;
+import java.util.*;
 
 /**
  * 字符串工具类
@@ -18,23 +17,23 @@ import com.ewem.common.core.text.StrFormatter;
  */
 public class StringUtils extends org.apache.commons.lang3.StringUtils {
     /**
-     * 空字符串
-     */
-    private static final String NULLSTR = "";
-
-    /**
-     * 下划线
-     */
-    private static final char SEPARATOR = '_';
-
-    /**
      * 获取参数不为空值
      *
      * @param value defaultValue 要判断的value
      * @return value 返回值
      */
     public static <T> T nvl(T value, T defaultValue) {
-        return value != null ? value : defaultValue;
+        return ObjectUtil.defaultIfNull(value, defaultValue);
+    }
+
+    /**
+     * 获取参数不为空值
+     *
+     * @param str defaultValue 要判断的value
+     * @return value 返回值
+     */
+    public static String blankToDefault(String str, String defaultValue) {
+        return StrUtil.blankToDefault(str, defaultValue);
     }
 
     /**
@@ -44,7 +43,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return true：为空 false：非空
      */
     public static boolean isEmpty(Collection<?> coll) {
-        return isNull(coll) || coll.isEmpty();
+        return CollUtil.isEmpty(coll);
     }
 
     /**
@@ -64,7 +63,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      *                * @return true：为空 false：非空
      */
     public static boolean isEmpty(Object[] objects) {
-        return isNull(objects) || (objects.length == 0);
+        return ArrayUtil.isEmpty(objects);
     }
 
     /**
@@ -78,13 +77,33 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     }
 
     /**
+     * * 判断一个对象是否为空
+     *
+     * @param object 要判断的对象数组
+     *               * @return true：为空 false：非空
+     */
+    public static boolean isEmpty(Object object) {
+        return ObjectUtil.isEmpty(object);
+    }
+
+    /**
+     * * 判断一个对象是否非空
+     *
+     * @param object 要判断的对象数组
+     * @return true：非空 false：空
+     */
+    public static boolean isNotEmpty(Object object) {
+        return !isEmpty(object);
+    }
+
+    /**
      * * 判断一个Map是否为空
      *
      * @param map 要判断的Map
      * @return true：为空 false：非空
      */
     public static boolean isEmpty(Map<?, ?> map) {
-        return isNull(map) || map.isEmpty();
+        return MapUtil.isEmpty(map);
     }
 
     /**
@@ -104,7 +123,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return true：为空 false：非空
      */
     public static boolean isEmpty(String str) {
-        return isNull(str) || NULLSTR.equals(str.trim());
+        return StrUtil.isEmpty(str);
     }
 
     /**
@@ -124,7 +143,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return true：为空 false：非空
      */
     public static boolean isNull(Object object) {
-        return object == null;
+        return ObjectUtil.isNull(object);
     }
 
     /**
@@ -144,14 +163,14 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return true：是数组 false：不是数组
      */
     public static boolean isArray(Object object) {
-        return isNotNull(object) && object.getClass().isArray();
+        return ArrayUtil.isArray(object);
     }
 
     /**
      * 去空格
      */
     public static String trim(String str) {
-        return (str == null ? "" : str.trim());
+        return StrUtil.trim(str);
     }
 
     /**
@@ -162,22 +181,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return 结果
      */
     public static String substring(final String str, int start) {
-        if (str == null) {
-            return NULLSTR;
-        }
-
-        if (start < 0) {
-            start = str.length() + start;
-        }
-
-        if (start < 0) {
-            start = 0;
-        }
-        if (start > str.length()) {
-            return NULLSTR;
-        }
-
-        return str.substring(start);
+        return substring(str, start, str.length());
     }
 
     /**
@@ -189,33 +193,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return 结果
      */
     public static String substring(final String str, int start, int end) {
-        if (str == null) {
-            return NULLSTR;
-        }
-
-        if (end < 0) {
-            end = str.length() + end;
-        }
-        if (start < 0) {
-            start = str.length() + start;
-        }
-
-        if (end > str.length()) {
-            end = str.length();
-        }
-
-        if (start > end) {
-            return NULLSTR;
-        }
-
-        if (start < 0) {
-            start = 0;
-        }
-        if (end < 0) {
-            end = 0;
-        }
-
-        return str.substring(start, end);
+        return StrUtil.sub(str, start, end);
     }
 
     /**
@@ -232,10 +210,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return 格式化后的文本
      */
     public static String format(String template, Object... params) {
-        if (isEmpty(params) || isEmpty(template)) {
-            return template;
-        }
-        return StrFormatter.format(template, params);
+        return StrUtil.format(template, params);
     }
 
     /**
@@ -245,7 +220,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return 结果
      */
     public static boolean ishttp(String link) {
-        return StringUtils.startsWithAny(link, Constants.HTTP, Constants.HTTPS);
+        return Validator.isUrl(link);
     }
 
     /**
@@ -255,8 +230,8 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @param sep 分隔符
      * @return set集合
      */
-    public static final Set<String> str2Set(String str, String sep) {
-        return new HashSet<String>(str2List(str, sep, true, false));
+    public static Set<String> str2Set(String str, String sep) {
+        return new HashSet<>(str2List(str, sep, true, false));
     }
 
     /**
@@ -268,23 +243,23 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @param trim        去掉首尾空白
      * @return list集合
      */
-    public static final List<String> str2List(String str, String sep, boolean filterBlank, boolean trim) {
-        List<String> list = new ArrayList<String>();
-        if (StringUtils.isEmpty(str)) {
+    public static List<String> str2List(String str, String sep, boolean filterBlank, boolean trim) {
+        List<String> list = new ArrayList<>();
+        if (isEmpty(str)) {
             return list;
         }
 
         // 过滤空白字符串
-        if (filterBlank && StringUtils.isBlank(str)) {
+        if (filterBlank && isBlank(str)) {
             return list;
         }
         String[] split = str.split(sep);
         for (String string : split) {
-            if (filterBlank && StringUtils.isBlank(string)) {
+            if (filterBlank && isBlank(string)) {
                 continue;
             }
             if (trim) {
-                string = string.trim();
+                string = trim(string);
             }
             list.add(string);
         }
@@ -300,54 +275,14 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return 是否包含任意一个字符串
      */
     public static boolean containsAnyIgnoreCase(CharSequence cs, CharSequence... searchCharSequences) {
-        if (isEmpty(cs) || isEmpty(searchCharSequences)) {
-            return false;
-        }
-        for (CharSequence testStr : searchCharSequences) {
-            if (containsIgnoreCase(cs, testStr)) {
-                return true;
-            }
-        }
-        return false;
+        return StrUtil.containsAnyIgnoreCase(cs, searchCharSequences);
     }
 
     /**
      * 驼峰转下划线命名
      */
     public static String toUnderScoreCase(String str) {
-        if (str == null) {
-            return null;
-        }
-        StringBuilder sb = new StringBuilder();
-        // 前置字符是否大写
-        boolean preCharIsUpperCase = true;
-        // 当前字符是否大写
-        boolean curreCharIsUpperCase = true;
-        // 下一字符是否大写
-        boolean nexteCharIsUpperCase = true;
-        for (int i = 0; i < str.length(); i++) {
-            char c = str.charAt(i);
-            if (i > 0) {
-                preCharIsUpperCase = Character.isUpperCase(str.charAt(i - 1));
-            } else {
-                preCharIsUpperCase = false;
-            }
-
-            curreCharIsUpperCase = Character.isUpperCase(c);
-
-            if (i < (str.length() - 1)) {
-                nexteCharIsUpperCase = Character.isUpperCase(str.charAt(i + 1));
-            }
-
-            if (preCharIsUpperCase && curreCharIsUpperCase && !nexteCharIsUpperCase) {
-                sb.append(SEPARATOR);
-            } else if ((i != 0 && !preCharIsUpperCase) && curreCharIsUpperCase) {
-                sb.append(SEPARATOR);
-            }
-            sb.append(Character.toLowerCase(c));
-        }
-
-        return sb.toString();
+        return StrUtil.toUnderlineCase(str);
     }
 
     /**
@@ -358,14 +293,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return 包含返回true
      */
     public static boolean inStringIgnoreCase(String str, String... strs) {
-        if (str != null && strs != null) {
-            for (String s : strs) {
-                if (str.equalsIgnoreCase(trim(s))) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return StrUtil.equalsAnyIgnoreCase(str, strs);
     }
 
     /**
@@ -375,52 +303,14 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return 转换后的驼峰式命名的字符串
      */
     public static String convertToCamelCase(String name) {
-        StringBuilder result = new StringBuilder();
-        // 快速检查
-        if (name == null || name.isEmpty()) {
-            // 没必要转换
-            return "";
-        } else if (!name.contains("_")) {
-            // 不含下划线，仅将首字母大写
-            return name.substring(0, 1).toUpperCase() + name.substring(1);
-        }
-        // 用下划线将原始字符串分割
-        String[] camels = name.split("_");
-        for (String camel : camels) {
-            // 跳过原始字符串中开头、结尾的下换线或双重下划线
-            if (camel.isEmpty()) {
-                continue;
-            }
-            // 首字母大写
-            result.append(camel.substring(0, 1).toUpperCase());
-            result.append(camel.substring(1).toLowerCase());
-        }
-        return result.toString();
+        return StrUtil.upperFirst(StrUtil.toCamelCase(name));
     }
 
     /**
      * 驼峰式命名法 例如：user_name->userName
      */
     public static String toCamelCase(String s) {
-        if (s == null) {
-            return null;
-        }
-        s = s.toLowerCase();
-        StringBuilder sb = new StringBuilder(s.length());
-        boolean upperCase = false;
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-
-            if (c == SEPARATOR) {
-                upperCase = true;
-            } else if (upperCase) {
-                sb.append(Character.toUpperCase(c));
-                upperCase = false;
-            } else {
-                sb.append(c);
-            }
-        }
-        return sb.toString();
+        return StrUtil.toCamelCase(s);
     }
 
     /**
@@ -453,8 +343,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return
      */
     public static boolean isMatch(String pattern, String url) {
-        AntPathMatcher matcher = new AntPathMatcher();
-        return matcher.match(pattern, url);
+        return ReUtil.isMatch(pattern, url);
     }
 
     @SuppressWarnings("unchecked")

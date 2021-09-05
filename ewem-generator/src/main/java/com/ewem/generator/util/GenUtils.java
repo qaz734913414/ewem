@@ -1,13 +1,13 @@
 package com.ewem.generator.util;
 
-import java.util.Arrays;
-
-import org.apache.commons.lang3.RegExUtils;
 import com.ewem.common.constant.GenConstants;
 import com.ewem.common.utils.StringUtils;
 import com.ewem.generator.config.GenConfig;
 import com.ewem.generator.domain.GenTable;
 import com.ewem.generator.domain.GenTableColumn;
+import org.apache.commons.lang3.RegExUtils;
+
+import java.util.Arrays;
 
 /**
  * 代码生成器 工具类
@@ -53,7 +53,7 @@ public class GenUtils {
             column.setHtmlType(GenConstants.HTML_INPUT);
 
             // 如果是浮点型 统一用BigDecimal
-            String[] str = StringUtils.split(StringUtils.substringBetween(column.getColumnType(), "(" , ")"), ",");
+            String[] str = StringUtils.split(StringUtils.substringBetween(column.getColumnType(), "(", ")"), ",");
             if (str != null && str.length == 2 && Integer.parseInt(str[1]) > 0) {
                 column.setJavaType(GenConstants.TYPE_BIGDECIMAL);
             }
@@ -188,7 +188,7 @@ public class GenUtils {
      * @return 替换后的名字
      */
     public static String replaceText(String text) {
-        return RegExUtils.replaceAll(text, "(?:表|若依)" , "");
+        return RegExUtils.replaceAll(text, "(?:表|若依)", "");
     }
 
     /**
@@ -198,7 +198,7 @@ public class GenUtils {
      * @return 截取后的列类型
      */
     public static String getDbType(String columnType) {
-        if (StringUtils.indexOf(columnType, "(") > 0) {
+        if (StringUtils.indexOf(columnType, '(') > 0) {
             return StringUtils.substringBefore(columnType, "(");
         } else {
             return columnType;
@@ -212,8 +212,8 @@ public class GenUtils {
      * @return 截取后的列类型
      */
     public static Integer getColumnLength(String columnType) {
-        if (StringUtils.indexOf(columnType, "(") > 0) {
-            String length = StringUtils.substringBetween(columnType, "(" , ")");
+        if (StringUtils.indexOf(columnType, '(') > 0) {
+            String length = StringUtils.substringBetween(columnType, "(", ")");
             return Integer.valueOf(length);
         } else {
             return 0;

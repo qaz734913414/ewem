@@ -1,5 +1,6 @@
 package com.ewem;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @author ewem
  */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@MapperScan(basePackages = "com.ewem.**.mapper.**")
 public class EwemApplication {
     public static void main(String[] args) {
         // System.setProperty("spring.devtools.restart.enabled", "false");

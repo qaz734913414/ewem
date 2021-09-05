@@ -61,6 +61,12 @@
             <artifactId>ewem-generator</artifactId>
         </dependency>
 
+        <!-- 码应用-->
+        <dependency>
+            <groupId>com.ewem</groupId>
+            <artifactId>ewem-code</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
