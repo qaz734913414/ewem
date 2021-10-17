@@ -1,13 +1,15 @@
 <template>
   <div class="app-container home">
-
+    <el-row :gutter="20">
+      <el-col :sm="24" :lg="24">
+      </el-col>
+    </el-row>
     <el-row :gutter="20">
       <el-col :sm="24" :lg="12" style="padding-left: 20px">
         <h2>若依后台管理框架</h2>
         <p>
           一直想做一款后台管理系统，看了很多优秀的开源项目但是发现没有合适自己的。于是利用空闲休息时间开始自己写一套后台系统。如此有了若依管理系统。，她可以用于所有的Web应用程序，如网站管理后台，网站会员中心，CMS，CRM，OA等等，当然，您也可以对她进行深度定制，以做出更强系统。所有前端后台代码封装过后十分精简易上手，出错概率低。同时支持移动客户端访问。系统会陆续更新一些实用功能。
         </p>
-        <p>
       </el-col>
 
       <el-col :sm="24" :lg="12" style="padding-left: 50px">
@@ -53,27 +55,27 @@
           </div>
           <div class="body">
             <p>
-              <i class="el-icon-s-promotion"></i> RuoYi官网：<el-link
-                href="http://www.ruoyi.vip"
-                target="_blank"
-                >http://www.ruoyi.vip</el-link
-              >
+              <i class="el-icon-s-promotion"></i> 官网：<el-link
+              href="http://www.ruoyi.vip"
+              target="_blank"
+            >http://www.ruoyi.vip</el-link
+            >
             </p>
             <p>
-              [![加入QQ群](https://img.shields.io/badge/200735978-blue.svg)](https://jq.qq.com/?_wv=1027&k=hTeVDdjn)
+              200735978
             </p>
             <p>
               <i class="el-icon-chat-dot-round"></i> 微信：<a
-                href="javascript:;"
-                ></a
-              >
+              href="javascript:;"
+            ></a
+            >
             </p>
             <p>
               <i class="el-icon-money"></i> 支付宝：<a
-                href="javascript:;"
-                class="支付宝信息"
-                ></a
-              >
+              href="javascript:;"
+              class="支付宝信息"
+            ></a
+            >
             </p>
           </div>
         </el-card>
@@ -521,13 +523,9 @@
             <span>捐赠支持</span>
           </div>
           <div class="body">
-            <img
-              src=""
-              alt="donate"
-              width="100%"
-            />
+
             <span style="display: inline-block; height: 30px; line-height: 30px"
-              >你可以请作者喝杯咖啡表示鼓励</span
+            >你可以请作者喝杯咖啡表示鼓励</span
             >
           </div>
         </el-card>
@@ -537,83 +535,83 @@
 </template>
 
 <script>
-export default {
-  name: "index",
-  data() {
-    return {
-      // 版本号
-      version: "3.6.0",
-    };
-  },
-  methods: {
-    goTarget(href) {
-      window.open(href, "_blank");
+  export default {
+    name: "index",
+    data() {
+      return {
+        // 版本号
+        version: "3.6.0",
+      };
     },
-  },
-};
+    methods: {
+      goTarget(href) {
+        window.open(href, "_blank");
+      },
+    },
+  };
 </script>
 
 <style scoped lang="scss">
-.home {
-  blockquote {
-    padding: 10px 20px;
-    margin: 0 0 20px;
-    font-size: 17.5px;
-    border-left: 5px solid #eee;
-  }
-  hr {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: 0;
-    border-top: 1px solid #eee;
-  }
-  .col-item {
-    margin-bottom: 20px;
-  }
+  .home {
+    blockquote {
+      padding: 10px 20px;
+      margin: 0 0 20px;
+      font-size: 17.5px;
+      border-left: 5px solid #eee;
+    }
+    hr {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border: 0;
+      border-top: 1px solid #eee;
+    }
+    .col-item {
+      margin-bottom: 20px;
+    }
 
-  ul {
-    padding: 0;
-    margin: 0;
-  }
+    ul {
+      padding: 0;
+      margin: 0;
+    }
 
-  font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  color: #676a6c;
-  overflow-x: hidden;
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #676a6c;
+    overflow-x: hidden;
 
-  ul {
-    list-style-type: none;
-  }
+    ul {
+      list-style-type: none;
+    }
 
-  h4 {
-    margin-top: 0px;
-  }
+    h4 {
+      margin-top: 0px;
+    }
 
-  h2 {
-    margin-top: 10px;
-    font-size: 26px;
-    font-weight: 100;
-  }
+    h2 {
+      margin-top: 10px;
+      font-size: 26px;
+      font-weight: 100;
+    }
 
-  p {
-    margin-top: 10px;
+    p {
+      margin-top: 10px;
 
-    b {
-      font-weight: 700;
+      b {
+        font-weight: 700;
+      }
+    }
+
+    .update-log {
+      ol {
+        display: block;
+        list-style-type: decimal;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        padding-inline-start: 40px;
+      }
     }
   }
-
-  .update-log {
-    ol {
-      display: block;
-      list-style-type: decimal;
-      margin-block-start: 1em;
-      margin-block-end: 1em;
-      margin-inline-start: 0;
-      margin-inline-end: 0;
-      padding-inline-start: 40px;
-    }
-  }
-}
 </style>
 

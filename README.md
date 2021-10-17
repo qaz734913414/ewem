@@ -3,7 +3,7 @@
 #### 故开发一套应用一物一码的轮子，欢迎各位 Watch、Star。
 
 ## 内置功能
-<img src="https://img-blog.csdnimg.cn/6e692ca5729942c49a0273c01efe9bb3.jpg" alt="内置功能"/>
+<img src="https://images.gitee.com/uploads/images/2021/1017/154920_0439b0b8_1225299.png" alt="内置功能"/>
 
 
 
@@ -22,8 +22,33 @@
 ## 应用场景
 <img  src="https://img-blog.csdnimg.cn/8bfdf596398e4dcaab744e9506dbd20a.png" alt="应用领域"/>
 
-## 合作联系
+## 系统演示
+#### 产品管理
+<img src="https://images.gitee.com/uploads/images/2021/1017/151407_f2d9fe92_1225299.png" alt=""/>
+<img src="https://images.gitee.com/uploads/images/2021/1017/151412_33096aab_1225299.png" alt=""/>
+
+#### 批次管理
+<img src="https://images.gitee.com/uploads/images/2021/1017/151353_e24bac9f_1225299.png" alt=""/>
+
+#### 赋码管理
+<img src="https://images.gitee.com/uploads/images/2021/1017/151439_f828e7e4_1225299.png" alt=""/>
+<img src="https://images.gitee.com/uploads/images/2021/1017/151429_1417b17b_1225299.png" alt=""/>
+<img src="https://images.gitee.com/uploads/images/2021/1017/151434_621630e4_1225299.png" alt=""/>
+
+#### 环节管理
+<img src="https://images.gitee.com/uploads/images/2021/1017/151444_4241220d_1225299.png" alt=""/>
+<img src="https://images.gitee.com/uploads/images/2021/1017/151448_cf3ed13e_1225299.png" alt=""/>
+
+#### 溯源页面
+* 溯源地址：http://localhost/c?c=TBRFEZRB75UR7MCVVG
+
+<img src="https://images.gitee.com/uploads/images/2021/1017/151457_b25f7a6d_1225299.png" alt=""/>
+<img src="https://images.gitee.com/uploads/images/2021/1017/151503_5b18caa0_1225299.png" alt=""/>
+<img src="https://images.gitee.com/uploads/images/2021/1017/151515_232c4744_1225299.png" alt=""/>
+
+## 开发者微信
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0809/223955_3ef4e39b_1225299.png "合作联系")
+
 
 ## 交流群
 
