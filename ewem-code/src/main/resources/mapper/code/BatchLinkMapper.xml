@@ -37,7 +37,7 @@
 
 
     <select id="selectBatchLinkList" parameterType="BatchLink" resultMap="BatchLinkResult">
-        select distinct bl.*,b.*,l.*
+        select distinct bl.*,b.number,b.product_id,l.name,l.show_name,l.order_num,l.visible
         from ewem_batch_link bl
         left join ewem_batch b on b.id = bl.batch_id
         left join ewem_link l on l.id = bl.link_id
