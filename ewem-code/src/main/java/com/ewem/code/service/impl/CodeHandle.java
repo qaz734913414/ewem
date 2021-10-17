@@ -7,10 +7,12 @@ import com.ewem.code.service.ICodeService;
 import com.ewem.common.enums.ApplyStatus;
 import com.ewem.common.qrcode.impl.SnowflakeClient;
 import com.ewem.common.utils.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.compress.utils.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * 码处理任务Service业务层处理
@@ -20,8 +22,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CodeHandle {
-
-    private static final Logger log = LoggerFactory.getLogger(CodeHandle.class);
 
     @Autowired
     IApplyService applyService;
@@ -36,19 +36,26 @@ public class CodeHandle {
     /**
      * 处理码申请
      */
+    @Transactional(rollbackFor = Exception.class)
     public void handle() {
-        Apply apply = applyService.selectOneByApplyStatus(ApplyStatus.INIT.getCode());
+        Apply apply = applyService.selectOneByApplyStatus(ApplyStatus.INIT);
         if (StringUtils.isNull(apply)) {
             return;
         }
+        apply.setUpdateBy(apply.getCreateBy());
         apply.setApplyStatus(ApplyStatus.EXECUTING.getCode());
-        applyService.updateApply(apply);
+        applyService.updateById(apply);
+        List<Code> codeList = Lists.newArrayList();
         for (int i = 0; i < apply.getQuantity(); i++) {
             Code code = new Code();
-            code.setCode(snowflakeClient.getCodeUpperCase());
-            codeService.insertCode(code);
+            code.setCode(snowflakeClient.code(apply.getRule(), apply.getLength()));
+            code.setBatchId(apply.getBatchId());
+            code.setCreateBy(apply.getCreateBy());
+            code.setUpdateBy(apply.getCreateBy());
+            codeList.add(code);
         }
-        apply.setApplyStatus(ApplyStatus.EXECUTING.getCode());
-        applyService.updateApply(apply);
+        apply.setApplyStatus(ApplyStatus.SUCCESS.getCode());
+        codeService.saveBatch(codeList);
+        applyService.updateById(apply);
     }
 }

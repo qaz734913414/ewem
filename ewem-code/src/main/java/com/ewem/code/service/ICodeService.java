@@ -1,6 +1,7 @@
 package com.ewem.code.service;
 
 import com.ewem.code.domain.Code;
+import com.ewem.common.core.mybatisplus.IServicePlus;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * @author ewem
  * @date 2021-08-14
  */
-public interface ICodeService {
+public interface ICodeService extends IServicePlus<Code> {
     /**
      * 查询码管理
      *
@@ -20,12 +21,27 @@ public interface ICodeService {
     public Code selectCodeById(Long id);
 
     /**
+     * 查询码
+     *
+     * @param code 码
+     * @return 码管理
+     */
+    Code selectCodeByCode(String code);
+
+    /**
      * 查询码管理列表
      *
      * @param code 码管理
      * @return 码管理集合
      */
     public List<Code> selectCodeList(Code code);
+    /**
+     * 导出码管理列表
+     *
+     * @param code 码管理
+     * @return 码管理集合
+     */
+    public List<Code> export(Code code);
 
     /**
      * 新增码管理

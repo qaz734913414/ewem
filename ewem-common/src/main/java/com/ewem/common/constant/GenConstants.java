@@ -167,7 +167,7 @@ public class GenConstants {
     /**
      * 时间类型
      */
-    public static final String TYPE_DATE = "Date";
+    public static final String TYPE_DATE = "LocalDateTime";
 
     /**
      * 模糊查询

@@ -3,10 +3,15 @@ package com.ewem.code.service.impl;
 import com.ewem.code.domain.Code;
 import com.ewem.code.mapper.CodeMapper;
 import com.ewem.code.service.ICodeService;
-import com.ewem.common.utils.DateUtils;
+import com.ewem.common.config.EwemConfig;
+import com.ewem.common.core.mybatisplus.ServicePlusImpl;
+import com.ewem.common.exception.CustomException;
+import com.ewem.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -16,10 +21,10 @@ import java.util.List;
  * @date 2021-08-14
  */
 @Service
-public class CodeServiceImpl implements ICodeService {
+public class CodeServiceImpl extends ServicePlusImpl<CodeMapper, Code> implements ICodeService {
 
     @Autowired
-    private CodeMapper codeMapper;
+    CodeMapper codeMapper;
 
     /**
      * 查询码管理
@@ -30,6 +35,11 @@ public class CodeServiceImpl implements ICodeService {
     @Override
     public Code selectCodeById(Long id) {
         return codeMapper.selectCodeById(id);
+    }
+
+    @Override
+    public Code selectCodeByCode(String code) {
+        return codeMapper.selectOneByCode(code);
     }
 
     /**
@@ -43,6 +53,19 @@ public class CodeServiceImpl implements ICodeService {
         return codeMapper.selectCodeList(code);
     }
 
+    @Override
+    public List<Code> export(Code code) {
+        if (StringUtils.isEmpty(EwemConfig.getQrCodeDomain())) {
+            throw new CustomException("未配置码域名");
+        }
+        List<Code> codeList = this.selectCodeList(code);
+        if (CollectionUtils.isEmpty(codeList)) {
+            return null;
+        }
+        codeList.forEach(c -> c.setCode(StringUtils.format("{}c?c={}", EwemConfig.getQrCodeDomain(), c.getCode())));
+        return codeList;
+    }
+
     /**
      * 新增码管理
      *
@@ -51,7 +74,7 @@ public class CodeServiceImpl implements ICodeService {
      */
     @Override
     public int insertCode(Code code) {
-        code.setCreateTime(DateUtils.getNowDate());
+        code.setCreateTime(LocalDateTime.now());
         return codeMapper.insertCode(code);
     }
 
@@ -63,7 +86,7 @@ public class CodeServiceImpl implements ICodeService {
      */
     @Override
     public int updateCode(Code code) {
-        code.setUpdateTime(DateUtils.getNowDate());
+        code.setUpdateTime(LocalDateTime.now());
         return codeMapper.updateCode(code);
     }
 

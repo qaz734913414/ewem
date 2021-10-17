@@ -14,6 +14,8 @@ ewem:
   addressEnabled: false
   # 验证码类型 math 数组计算 char 字符验证
   captchaType: math
+  # 码域名,配置后不建议修改，示例（ https://域名/）
+  qrCodeDomain:
 
 # 开发环境配置
 server:

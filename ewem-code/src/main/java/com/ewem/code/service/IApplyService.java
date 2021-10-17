@@ -1,71 +1,61 @@
 package com.ewem.code.service;
 
 import com.ewem.code.domain.Apply;
+import com.ewem.common.core.mybatisplus.IServicePlus;
+import com.ewem.common.enums.ApplyStatus;
 
+
+import java.util.Collection;
 import java.util.List;
 
 /**
  * 码申请Service接口
  *
  * @author ewem
- * @date 2021-08-08
+ * @date 2021-08-01
  */
-public interface IApplyService {
-    /**
-     * 查询码申请
-     *
-     * @param id 码申请主键
-     * @return 码申请
-     */
-    public Apply selectApplyById(Long id);
+public interface IApplyService extends IServicePlus<Apply> {
+
+	/**
+	 * 查询单个
+	 * @return
+	 */
+	Apply queryById(Long id);
+
+
+	/**
+	 * 查询列表
+	 */
+	List<Apply> queryList(Apply apply);
+
+	/**
+	 * 根据新增业务对象插入码申请
+	 * @param apply 码申请新增业务对象
+	 * @return
+	 */
+	Boolean insertBy(Apply apply);
+
+	/**
+	 * 根据编辑业务对象修改码申请
+	 * @param apply 码申请编辑业务对象
+	 * @return
+	 */
+	Boolean updateBy(Apply apply);
 
     /**
-     * 查询码申请列表
+     * 校验并删除数据
      *
-     * @param apply 码申请
-     * @return 码申请集合
-     */
-    public List<Apply> selectApplyList(Apply apply);
-
-    /**
-     * 新增码申请
-     *
-     * @param apply 码申请
-     * @return 结果
-     */
-    public int insertApply(Apply apply);
-
-    /**
-     * 修改码申请
-     *
-     * @param apply 码申请
-     * @return 结果
-     */
-    public int updateApply(Apply apply);
-
-    /**
-     * 批量删除码申请
-     *
-     * @param ids 需要删除的码申请主键集合
-     * @return 结果
-     */
-    public int deleteApplyByIds(Long[] ids);
-
-    /**
-     * 删除码申请信息
-     *
-     * @param id 码申请主键
-     * @return 结果
-     */
-    public int deleteApplyById(Long id);
-
-    /**
-     * 生成状态查询码申请
-     *
-     * @param applyStatus 生成状态
+     * @param ids     主键集合
+     * @param isValid 是否校验,true-删除前校验,false-不校验
      * @return
      */
-    Apply selectOneByApplyStatus(String applyStatus);
+    Boolean deleteWithValidByIds(Collection<Long> ids, Boolean isValid);
 
-
+    /**
+     * 申请状态查询一条申请记录
+     *
+     * @param applyStatus
+     * @return
+     */
+    Apply selectOneByApplyStatus(ApplyStatus applyStatus);
 }

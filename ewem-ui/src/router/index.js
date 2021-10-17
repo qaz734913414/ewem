@@ -49,6 +49,11 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/c',
+    component: (resolve) => require(['@/views/trace'], resolve),
+    hidden: true,
+  },
+  {
     path: '/404',
     component: (resolve) => require(['@/views/error/404'], resolve),
     hidden: true

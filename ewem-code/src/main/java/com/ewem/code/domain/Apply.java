@@ -1,29 +1,30 @@
 package com.ewem.code.domain;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.ewem.common.annotation.Excel;
-import com.ewem.common.core.domain.BaseEntity;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import com.ewem.common.core.domain.BaseEntityPlus;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * 码申请对象 ewem_apply
  *
  * @author ewem
- * @date 2021-08-08
+ * @date 2021-08-01
  */
-public class Apply extends BaseEntity {
+@Data
+@NoArgsConstructor
+@Accessors(chain = true)
+@EqualsAndHashCode(callSuper = true)
+@TableName("ewem_apply")
+public class Apply extends BaseEntityPlus implements Serializable {
+
     private static final long serialVersionUID = 1L;
-
-    /**
-     * $column.columnComment
-     */
-    private Long id;
-
-    /**
-     * 码申请数量
-     */
-    @Excel(name = "码申请数量")
-    private Long quantity;
 
     /**
      * 申请名称
@@ -32,129 +33,42 @@ public class Apply extends BaseEntity {
     private String name;
 
     /**
-     * 码类型
+     * 申请数量
      */
-    @Excel(name = "码类型")
-    private String type;
+    @Excel(name = "申请数量")
+    private Long quantity;
 
     /**
-     * 生成规则
+     * 码规则
      */
-    @Excel(name = "生成规则")
+    @Excel(name = "码规则")
     private String rule;
 
     /**
-     * 码长度
+     * 长度
      */
-    @Excel(name = "码长度")
+    @Excel(name = "长度")
     private Integer length;
 
     /**
-     * 生成状态
+     * 申请状态
      */
-    @Excel(name = "生成状态")
+    @Excel(name = "申请状态")
     private String applyStatus;
 
     /**
-     * 状态（0正常 1停用）
+     * 批次ID
      */
-    @Excel(name = "状态", readConverterExp = "0=正常,1=停用")
-    private String status;
+    @Excel(name = "批次ID")
+    private Long batchId;
 
     /**
-     * 删除标志（0代表存在 2代表删除）
+     * 备注
      */
-    private String delFlag;
+    @Excel(name = "备注")
+    private String remark;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @TableField(exist = false)
+    private Batch batch;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
-    public Long getQuantity() {
-        return quantity;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setRule(String rule) {
-        this.rule = rule;
-    }
-
-    public String getRule() {
-        return rule;
-    }
-
-    public void setLength(Integer length) {
-        this.length = length;
-    }
-
-    public Integer getLength() {
-        return length;
-    }
-
-    public void setApplyStatus(String applyStatus) {
-        this.applyStatus = applyStatus;
-    }
-
-    public String getApplyStatus() {
-        return applyStatus;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setDelFlag(String delFlag) {
-        this.delFlag = delFlag;
-    }
-
-    public String getDelFlag() {
-        return delFlag;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("quantity", getQuantity())
-                .append("name", getName())
-                .append("type", getType())
-                .append("rule", getRule())
-                .append("length", getLength())
-                .append("applyStatus", getApplyStatus())
-                .append("status", getStatus())
-                .append("delFlag", getDelFlag())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("updateBy", getUpdateBy())
-                .append("updateTime", getUpdateTime())
-                .append("remark", getRemark())
-                .toString();
-    }
 }

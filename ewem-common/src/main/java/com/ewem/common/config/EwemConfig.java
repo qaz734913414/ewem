@@ -41,6 +41,11 @@ public class EwemConfig {
      */
     private static boolean addressEnabled;
 
+    /**
+     * 二维码域名
+     */
+    private static String qrCodeDomain;
+
     public String getName() {
         return name;
     }
@@ -108,5 +113,13 @@ public class EwemConfig {
      */
     public static String getUploadPath() {
         return getProfile() + "/upload";
+    }
+
+    public static String getQrCodeDomain() {
+        return qrCodeDomain;
+    }
+
+    public void setQrCodeDomain(String qrCodeDomain) {
+        EwemConfig.qrCodeDomain = qrCodeDomain;
     }
 }

@@ -3,11 +3,9 @@ package com.ewem.common.qrcode.impl;
 
 import com.ewem.common.qrcode.factory.AbstractWorkerIdGeneratorFactory;
 import com.ewem.common.utils.snowflake.SnowflakeIdUtils;
-import org.apache.commons.compress.utils.Sets;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
-import java.util.Set;
 
 /**
  * @author ewem
@@ -30,38 +28,35 @@ public class SnowflakeClient extends AbstractWorkerIdGeneratorFactory {
 
     public static final int RADIX = 36;
 
-    public static final int DEFAULT_LENGTH = 16;
+    public static final int DEFAULT_LENGTH = 17;
 
     private static final Random RANDOM = new Random();
 
-    private final static String[] RANDOM_APPEND =
+    private final static String[] RANDOM_ALL =
             {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
                     "V", "W", "X", "Y", "Z", "#", "$", "*", "-", "_", "+", "=", "<", ">", "&", "^",
                     "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
 
+    private final static String[] RANDOM_NUMBER = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
 
-    public static void main(String[] args) {
-        SnowflakeClient bambooLeafSnowflakeClient = new SnowflakeClient();
-        Long startTime = System.currentTimeMillis();
-        Set<String> codes = Sets.newHashSet();
-        for (int i = 0; i < 1000000; i++) {
-            codes.add(bambooLeafSnowflakeClient.getCodeUpperCase(1, 17));
+    private final static String[] RANDOM_LETTER_NUMBER = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
+            "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+
+
+    public String code(String rule, Integer length) {
+        if (null == length || length < DEFAULT_LENGTH) {
+            length = DEFAULT_LENGTH;
         }
-        Long endTime = System.currentTimeMillis();
-        System.out.println(codes.size());
-        System.out.println(codes.stream().findFirst().get());
-        System.out.println(codes.stream().findFirst().get().length());
-        System.out.println(endTime - startTime);
+        switch (rule) {
+            case "NUMBER":
+                return numberCode(length);
+            case "LETTER_NUMBER":
+                return letterNumberCode(length);
+            default:
+                return letterNumberChar(length);
+        }
     }
 
-
-    /**
-     * 获取码
-     * @return 数字类型
-     */
-    public long getCode() {
-        return this.getSnowflakeGenerator(workerId).nextId();
-    }
 
     /**
      * 获取码-指定workerId
@@ -69,47 +64,63 @@ public class SnowflakeClient extends AbstractWorkerIdGeneratorFactory {
      * @param workerId
      * @return 数字类型
      */
-    public long getCode(Integer workerId) {
+    public long code(Integer workerId) {
         if (workerId == null) {
             throw new IllegalArgumentException("worker id is null");
         }
         return this.getSnowflakeGenerator(workerId).nextId();
     }
 
+    public static void main(String[] args) {
+        System.out.println(String.valueOf(new SnowflakeClient().code(1)).length());
+    }
+
     /**
-     * 获取码-大写
+     * 获取指定长度数字类型的码
+     *
+     * @param length
      * @return
      */
-    public String getCodeUpperCase() {
-        StringBuilder id = new StringBuilder(DEFAULT_LENGTH);
-        String snowflakeId = Long.toString(getCode(workerId), RADIX);
+    public String numberCode(Integer length) {
+        StringBuilder id = new StringBuilder(length);
+        String snowflakeId = Long.toString(code(workerId));
         id.append(snowflakeId);
         //不够length,后补随机长度
-        for (int i = 0; i < (DEFAULT_LENGTH - snowflakeId.length()); i++) {
-            id.append(RANDOM_APPEND[RANDOM.nextInt(RANDOM_APPEND.length - 1)]);
+        for (int i = 0; i < (length - snowflakeId.length()); i++) {
+            id.append(RANDOM_NUMBER[RANDOM.nextInt(RANDOM_NUMBER.length - 1)]);
         }
-        return id.toString().toUpperCase();
+        return id.toString();
     }
 
 
     /**
-     * 获取码-指定长度
+     * 字母加数字
      *
-     * @param workerId
-     * @param length 指定长度
      * @return
      */
-    public String getCodeUpperCase(Integer workerId, Integer length) {
-        if (length < 16) {
-            throw new IllegalArgumentException("length < 16");
-        }
+    public String letterNumberCode(Integer length) {
         StringBuilder id = new StringBuilder(length);
-
-        String snowflakeId = Long.toString(getCode(workerId), RADIX);
+        String snowflakeId = Long.toString(code(workerId), RADIX);
         id.append(snowflakeId);
         //不够length,后补随机长度
         for (int i = 0; i < (length - snowflakeId.length()); i++) {
-            id.append(RANDOM_APPEND[RANDOM.nextInt(RANDOM_APPEND.length - 1)]);
+            id.append(RANDOM_LETTER_NUMBER[RANDOM.nextInt(RANDOM_LETTER_NUMBER.length - 1)]);
+        }
+        return id.toString().toUpperCase();
+    }
+
+    /**
+     * 获取码-大写
+     *
+     * @return
+     */
+    public String letterNumberChar(Integer length) {
+        StringBuilder id = new StringBuilder(length);
+        String snowflakeId = Long.toString(code(workerId), RADIX);
+        id.append(snowflakeId);
+        //不够length,后补随机长度
+        for (int i = 0; i < (length - snowflakeId.length()); i++) {
+            id.append(RANDOM_ALL[RANDOM.nextInt(RANDOM_ALL.length - 1)]);
         }
         return id.toString().toUpperCase();
     }

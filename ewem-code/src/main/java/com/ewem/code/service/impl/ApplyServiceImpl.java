@@ -1,101 +1,95 @@
 package com.ewem.code.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.ewem.code.domain.Apply;
 import com.ewem.code.mapper.ApplyMapper;
 import com.ewem.code.service.IApplyService;
+import com.ewem.common.core.mybatisplus.ServicePlusImpl;
+import com.ewem.common.enums.ApplyStatus;
+import com.ewem.common.exception.CustomException;
+import com.ewem.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
  * 码申请Service业务层处理
  *
  * @author ewem
- * @date 2021-08-08
+ * @date 2021-08-01
  */
 @Service
-public class ApplyServiceImpl implements IApplyService {
+public class ApplyServiceImpl extends ServicePlusImpl<ApplyMapper, Apply> implements IApplyService {
 
     @Autowired
-    private ApplyMapper applyMapper;
+    ApplyMapper applyMapper;
 
-    /**
-     * 查询码申请
-     *
-     * @param id 码申请主键
-     * @return 码申请
-     */
     @Override
-    public Apply selectApplyById(Long id) {
-        return applyMapper.selectApplyById(id);
+    public Apply queryById(Long id) {
+        return getById(id);
     }
 
-    /**
-     * 查询码申请列表
-     *
-     * @param apply 码申请
-     * @return 码申请
-     */
     @Override
-    public List<Apply> selectApplyList(Apply apply) {
+    public List<Apply> queryList(Apply apply) {
         return applyMapper.selectApplyList(apply);
     }
 
-    /**
-     * 新增码申请
-     *
-     * @param apply 码申请
-     * @return 结果
-     */
+    private LambdaQueryWrapper<Apply> buildQueryWrapper(Apply apply) {
+        //Map<String, Object> params = apply.getParams();
+        LambdaQueryWrapper<Apply> lqw = Wrappers.lambdaQuery();
+        lqw.like(StringUtils.isNotBlank(apply.getName()), Apply::getName, apply.getName());
+        lqw.eq(StringUtils.isNotBlank(apply.getRule()), Apply::getRule, apply.getRule());
+        lqw.eq(StringUtils.isNotBlank(apply.getApplyStatus()), Apply::getApplyStatus, apply.getApplyStatus());
+        return lqw;
+    }
+
     @Override
-    public int insertApply(Apply apply) {
-        apply.setApplyStatus("1");
-        return applyMapper.insertApply(apply);
+    public Boolean insertBy(Apply apply) {
+        validEntityBeforeSave(apply);
+        return save(apply);
+    }
+
+    @Override
+    public Boolean updateBy(Apply apply) {
+        validEntityBeforeUpdate(apply);
+        return updateById(apply);
     }
 
     /**
-     * 修改码申请
+     * 保存前的数据校验
      *
-     * @param apply 码申请
-     * @return 结果
+     * @param apply 实体类数据
      */
-    @Override
-    public int updateApply(Apply apply) {
-        return applyMapper.updateApply(apply);
+    private void validEntityBeforeSave(Apply apply) {
+        apply.setApplyStatus(ApplyStatus.INIT.getCode());
     }
 
     /**
-     * 批量删除码申请
+     * 修改前的数据校验
      *
-     * @param ids 需要删除的码申请主键
-     * @return 结果
+     * @param apply 实体类数据
      */
-    @Override
-    public int deleteApplyByIds(Long[] ids) {
-        return applyMapper.deleteApplyByIds(ids);
+    private void validEntityBeforeUpdate(Apply apply) {
+        Apply applyDTO = queryById(apply.getId());
+        if (!ApplyStatus.INIT.getCode().equals(applyDTO.getApplyStatus())) {
+            throw new CustomException("当前申请状态不可修改");
+        }
     }
 
-    /**
-     * 删除码申请信息
-     *
-     * @param id 码申请主键
-     * @return 结果
-     */
     @Override
-    public int deleteApplyById(Long id) {
-        return applyMapper.deleteApplyById(id);
+    public Boolean deleteWithValidByIds(Collection<Long> ids, Boolean isValid) {
+        if (isValid) {
+        }
+        return removeByIds(ids);
     }
 
-    /**
-     * 生成状态查询码申请
-     *
-     * @param applyStatus 生成状态
-     * @return
-     */
     @Override
-    public Apply selectOneByApplyStatus(String applyStatus) {
-        return applyMapper.selectOneByApplyStatus(applyStatus);
+    public Apply selectOneByApplyStatus(ApplyStatus applyStatus) {
+        LambdaQueryWrapper<Apply> lqw = Wrappers.lambdaQuery();
+        lqw.eq(Apply::getApplyStatus, applyStatus.getCode()).last(" limit 1");
+        return getOne(lqw);
     }
-
 }

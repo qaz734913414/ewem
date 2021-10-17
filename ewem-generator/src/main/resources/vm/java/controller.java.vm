@@ -41,7 +41,7 @@ public class ${ClassName}Controller extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:list')")
     @GetMapping("/list")
-    public TableDataInfo list(@Validated ${ClassName} ${className}) {
+    public TableDataInfo list(${ClassName} ${className}) {
         startPage();
         List<${ClassName}> list = i${ClassName}Service.queryList(${className});
         return getDataTable(list);
@@ -53,7 +53,7 @@ public class ${ClassName}Controller extends BaseController {
     @PreAuthorize("@ss.hasPermi('${permissionPrefix}:export')")
     @Log(title = "${functionName}", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
-    public AjaxResult export(@Validated ${ClassName} ${className}) {
+    public AjaxResult export(${ClassName} ${className}) {
         List<${ClassName}> list = i${ClassName}Service.queryList(${className});
         return new ExcelUtil<>(${ClassName}.class).exportExcel(list, "${functionName}");
 
@@ -76,7 +76,7 @@ public class ${ClassName}Controller extends BaseController {
     @Log(title = "${functionName}", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
-    public AjaxResult add(@RequestBody ${ClassName} ${className}) {
+    public AjaxResult add(@Validated @RequestBody ${ClassName} ${className}) {
         return toAjax(i${ClassName}Service.insertBy(${className}) ? 1 : 0);
     }
 
@@ -87,7 +87,7 @@ public class ${ClassName}Controller extends BaseController {
     @Log(title = "${functionName}", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
-    public AjaxResult edit(@RequestBody ${ClassName} ${className}) {
+    public AjaxResult edit(@Validated @RequestBody ${ClassName} ${className}) {
         return toAjax(i${ClassName}Service.updateBy(${className}) ? 1 : 0);
     }
 

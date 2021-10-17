@@ -21,7 +21,7 @@ import java.util.List;
  * @date 2021-08-14
  */
 @RestController
-@RequestMapping("/code/code")
+@RequestMapping("/ewem/code")
 public class CodeController extends BaseController {
     @Autowired
     private ICodeService codeService;
@@ -30,7 +30,7 @@ public class CodeController extends BaseController {
     /**
      * 查询码管理列表
      */
-    @PreAuthorize("@ss.hasPermi('code:code:list')")
+    @PreAuthorize("@ss.hasPermi('ewem:code:list')")
     @GetMapping("/list")
     public TableDataInfo list(Code code) {
         startPage();
@@ -41,11 +41,11 @@ public class CodeController extends BaseController {
     /**
      * 导出码管理列表
      */
-    @PreAuthorize("@ss.hasPermi('code:code:export')")
+    @PreAuthorize("@ss.hasPermi('ewem:code:export')")
     @Log(title = "码管理", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public AjaxResult export(Code code) {
-        List<Code> list = codeService.selectCodeList(code);
+        List<Code> list = codeService.export(code);
         ExcelUtil<Code> util = new ExcelUtil<Code>(Code.class);
         return util.exportExcel(list, "码管理数据");
     }
@@ -53,7 +53,7 @@ public class CodeController extends BaseController {
     /**
      * 获取码管理详细信息
      */
-    @PreAuthorize("@ss.hasPermi('code:code:query')")
+    @PreAuthorize("@ss.hasPermi('ewem:code:query')")
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id) {
         return AjaxResult.success(codeService.selectCodeById(id));
@@ -62,7 +62,7 @@ public class CodeController extends BaseController {
     /**
      * 新增码管理
      */
-    @PreAuthorize("@ss.hasPermi('code:code:add')")
+    @PreAuthorize("@ss.hasPermi('ewem:code:add')")
     @Log(title = "码管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody Code code) {
@@ -72,7 +72,7 @@ public class CodeController extends BaseController {
     /**
      * 修改码管理
      */
-    @PreAuthorize("@ss.hasPermi('code:code:edit')")
+    @PreAuthorize("@ss.hasPermi('ewem:code:edit')")
     @Log(title = "码管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody Code code) {
@@ -82,7 +82,7 @@ public class CodeController extends BaseController {
     /**
      * 删除码管理
      */
-    @PreAuthorize("@ss.hasPermi('code:code:remove')")
+    @PreAuthorize("@ss.hasPermi('ewem:code:remove')")
     @Log(title = "码管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids) {
