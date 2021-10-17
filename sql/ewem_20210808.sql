@@ -254,6 +254,55 @@ insert into sys_menu values('1057', '生成删除', '115', '3', '#', '', 1, 0, '
 insert into sys_menu values('1058', '导入代码', '115', '2', '#', '', 1, 0, 'F', '0', '0', 'tool:gen:import',            '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1059', '预览代码', '115', '4', '#', '', 1, 0, 'F', '0', '0', 'tool:gen:preview',           '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1060', '生成代码', '115', '5', '#', '', 1, 0, 'F', '0', '0', 'tool:gen:code',              '#', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_menu values (1061, '赋码管理', 0, 30, 'code', NULL, 1, 0, 'M', '0', '0', '', 'code', 'admin', sysdate(), 'admin', NULL, '');
+INSERT INTO sys_menu values (1080, '码管理', 1061, 1, 'code', 'ewem/code/index', 1, 0, 'C', '0', '0', 'ewem:code:list', '#', 'admin', sysdate(), '', NULL, '码管理菜单');
+INSERT INTO sys_menu values (1081, '码管理查询', 1080, 1, '#', '', 1, 0, 'F', '0', '0', 'ewem:code:query', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1082, '码管理新增', 1080, 2, '#', '', 1, 0, 'F', '0', '0', 'ewem:code:add', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1083, '码管理修改', 1080, 3, '#', '', 1, 0, 'F', '0', '0', 'ewem:code:edit', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1084, '码管理删除', 1080, 4, '#', '', 1, 0, 'F', '0', '0', 'ewem:code:remove', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1085, '码管理导出', 1080, 5, '#', '', 1, 0, 'F', '0', '0', 'ewem:code:export', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1088, '基础数据', 0, 10, 'basicData', NULL, 1, 0, 'M', '0', '0', '', 'build', 'admin', sysdate(), 'admin', sysdate(), '');
+INSERT INTO sys_menu values (1113, '产品管理', 1088, 1, 'product', 'ewem/product/index', 1, 0, 'C', '0', '0', 'ewem:product:list', '#', 'admin', sysdate(), '', NULL, '产品管理菜单');
+INSERT INTO sys_menu values (1114, '产品管理查询', 1113, 1, '#', '', 1, 0, 'F', '0', '0', 'ewem:product:query', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1115, '产品管理新增', 1113, 2, '#', '', 1, 0, 'F', '0', '0', 'ewem:product:add', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1116, '产品管理修改', 1113, 3, '#', '', 1, 0, 'F', '0', '0', 'ewem:product:edit', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1117, '产品管理删除', 1113, 4, '#', '', 1, 0, 'F', '0', '0', 'ewem:product:remove', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1118, '产品管理导出', 1113, 5, '#', '', 1, 0, 'F', '0', '0', 'ewem:product:export', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1119, '产品分类', 1088, 1, 'category', 'ewem/category/index', 1, 0, 'C', '0', '0', 'ewem:category:list', '#', 'admin', sysdate(), '', NULL, '产品分类菜单');
+INSERT INTO sys_menu values (1120, '产品分类查询', 1119, 1, '#', '', 1, 0, 'F', '0', '0', 'ewem:category:query', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1121, '产品分类新增', 1119, 2, '#', '', 1, 0, 'F', '0', '0', 'ewem:category:add', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1122, '产品分类修改', 1119, 3, '#', '', 1, 0, 'F', '0', '0', 'ewem:category:edit', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1123, '产品分类删除', 1119, 4, '#', '', 1, 0, 'F', '0', '0', 'ewem:category:remove', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1124, '产品分类导出', 1119, 5, '#', '', 1, 0, 'F', '0', '0', 'ewem:category:export', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1125, '批次管理', 1088, 1, 'batch', 'ewem/batch/index', 1, 0, 'C', '0', '0', 'ewem:batch:list', '#', 'admin', sysdate(), '', NULL, '批次菜单');
+INSERT INTO sys_menu values (1126, '批次查询', 1125, 1, '#', '', 1, 0, 'F', '0', '0', 'ewem:batch:query', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1127, '批次新增', 1125, 2, '#', '', 1, 0, 'F', '0', '0', 'ewem:batch:add', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1128, '批次修改', 1125, 3, '#', '', 1, 0, 'F', '0', '0', 'ewem:batch:edit', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1129, '批次删除', 1125, 4, '#', '', 1, 0, 'F', '0', '0', 'ewem:batch:remove', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1130, '批次导出', 1125, 5, '#', '', 1, 0, 'F', '0', '0', 'ewem:batch:export', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1131, '码申请', 1061, 1, 'apply', 'ewem/apply/index', 1, 0, 'C', '0', '0', 'ewem:apply:list', '#', 'admin', sysdate(), '', NULL, '码申请菜单');
+INSERT INTO sys_menu values (1132, '码申请查询', 1131, 1, '#', '', 1, 0, 'F', '0', '0', 'ewem:apply:query', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1133, '码申请新增', 1131, 2, '#', '', 1, 0, 'F', '0', '0', 'ewem:apply:add', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1134, '码申请修改', 1131, 3, '#', '', 1, 0, 'F', '0', '0', 'ewem:apply:edit', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1135, '码申请删除', 1131, 4, '#', '', 1, 0, 'F', '0', '0', 'ewem:apply:remove', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1136, '码申请导出', 1131, 5, '#', '', 1, 0, 'F', '0', '0', 'ewem:apply:export', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1137, '环节管理', 0, 50, 'link', NULL, 1, 0, 'M', '0', '0', '', 'list', 'admin', sysdate(), 'admin', NULL, '');
+INSERT INTO sys_menu values (1138, '环节模板', 1137, 1, 'link', 'ewem/link/index', 1, 0, 'C', '0', '0', 'ewem:link:list', '#', 'admin', sysdate(), '', NULL, '环节模板菜单');
+INSERT INTO sys_menu values (1139, '环节模板查询', 1138, 1, '#', '', 1, 0, 'F', '0', '0', 'ewem:link:query', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1140, '环节模板新增', 1138, 2, '#', '', 1, 0, 'F', '0', '0', 'ewem:link:add', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1141, '环节模板修改', 1138, 3, '#', '', 1, 0, 'F', '0', '0', 'ewem:link:edit', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1142, '环节模板删除', 1138, 4, '#', '', 1, 0, 'F', '0', '0', 'ewem:link:remove', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1143, '环节模板导出', 1138, 5, '#', '', 1, 0, 'F', '0', '0', 'ewem:link:export', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1150, '批次环节录入', 1137, 1, 'batchLink', 'ewem/batchLink/index', 1, 0, 'C', '0', '0', 'ewem:batchLink:list', '#', 'admin', sysdate(), '', NULL, '批次环节记录菜单');
+INSERT INTO sys_menu values (1151, '批次环节记录查询', 1150, 1, '#', '', 1, 0, 'F', '0', '0', 'ewem:batchLink:query', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1152, '批次环节记录新增', 1150, 2, '#', '', 1, 0, 'F', '0', '0', 'ewem:batchLink:add', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1153, '批次环节记录修改', 1150, 3, '#', '', 1, 0, 'F', '0', '0', 'ewem:batchLink:edit', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1154, '批次环节记录删除', 1150, 4, '#', '', 1, 0, 'F', '0', '0', 'ewem:batchLink:remove', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1155, '批次环节记录导出', 1150, 5, '#', '', 1, 0, 'F', '0', '0', 'ewem:batchLink:export', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1158, '扫码记录', 1061, 1, 'scanLog', 'ewem/scanLog/index', 1, 0, 'C', '0', '0', 'ewem:scanLog:list', '#', 'admin', sysdate(), '', NULL, '扫码记录菜单');
+INSERT INTO sys_menu values (1159, '扫码记录查询', 1158, 1, '#', '', 1, 0, 'F', '0', '0', 'ewem:scanLog:query', '#', 'admin', sysdate(), '', NULL, '');
+INSERT INTO sys_menu values (1160, '扫码记录导出', 1158, 5, '#', '', 1, 0, 'F', '0', '0', 'ewem:scanLog:export', '#', 'admin', sysdate(), '', NULL, '');
+
 
 
 -- ----------------------------
@@ -461,6 +510,8 @@ insert into sys_dict_type values(7,  '通知类型', 'sys_notice_type',     '0',
 insert into sys_dict_type values(8,  '通知状态', 'sys_notice_status',   '0', 'admin', sysdate(), '', null, '通知状态列表');
 insert into sys_dict_type values(9,  '操作类型', 'sys_oper_type',       '0', 'admin', sysdate(), '', null, '操作类型列表');
 insert into sys_dict_type values(10, '系统状态', 'sys_common_status',   '0', 'admin', sysdate(), '', null, '登录状态列表');
+insert into sys_dict_type values(13, '码规则', 'ewem_qrcode_rule',      '0', 'admin', sysdate(), '', null, '码规则列表');
+insert into sys_dict_type values(14, '码申请状态', 'ewem_apply_status', '0', 'admin', sysdate(), '', null, '码申请状态列表');
 
 
 -- ----------------------------
@@ -514,6 +565,13 @@ insert into sys_dict_data values(25, 8,  '生成代码', '8',       'sys_oper_ty
 insert into sys_dict_data values(26, 9,  '清空数据', '9',       'sys_oper_type',       '',   'danger',  'N', '0', 'admin', sysdate(), '', null, '清空操作');
 insert into sys_dict_data values(27, 1,  '成功',     '0',       'sys_common_status',   '',   'primary', 'N', '0', 'admin', sysdate(), '', null, '正常状态');
 insert into sys_dict_data values(28, 2,  '失败',     '1',       'sys_common_status',   '',   'danger',  'N', '0', 'admin', sysdate(), '', null, '停用状态');
+INSERT INTO sys_dict_data values(32, 0, '数字',       'NUMBER', 'ewem_qrcode_rule', NULL, 'default', 'N', '0', 'admin', sysdate(), '', NULL, NULL);
+INSERT INTO sys_dict_data values(33, 0, '字母＋数字', 'LETTER_NUMBER', 'ewem_qrcode_rule', NULL, 'default', 'N', '0', 'admin', sysdate(), '', NULL, NULL);
+INSERT INTO sys_dict_data values(34, 0, '字母+数字+符号', 'LETTER_NUMBER_CHAR', 'ewem_qrcode_rule', NULL, 'default', 'N', '0', 'admin', sysdate(), '', NULL, '码规则字母+数字+符号随机');
+INSERT INTO sys_dict_data values(35, 0, '初始化',     '1', 'ewem_apply_status', NULL, 'primary', 'N', '0', 'admin', sysdate(), '', NULL, NULL);
+INSERT INTO sys_dict_data values(36, 0, '进行中',     '2', 'ewem_apply_status', NULL, 'warning', 'N', '0', 'admin', sysdate(), '', NULL, NULL);
+INSERT INTO sys_dict_data values(37, 0, '失败',      '4', 'ewem_apply_status', NULL, 'danger', 'N', '0', 'admin', sysdate(), '', NULL, NULL);
+INSERT INTO sys_dict_data values(38, 0, '成功',      '3', 'ewem_apply_status', NULL, 'success', 'N', '0', 'admin', sysdate(), '', NULL, NULL);
 
 
 -- ----------------------------
@@ -583,6 +641,7 @@ create table sys_job (
 insert into sys_job values(1, '系统默认（无参）', 'DEFAULT', 'ryTask.ryNoParams',        '0/10 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
 insert into sys_job values(2, '系统默认（有参）', 'DEFAULT', 'ryTask.ryParams(\'ry\')',  '0/15 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
 insert into sys_job values(3, '系统默认（多参）', 'DEFAULT', 'ryTask.ryMultipleParams(\'ry\', true, 2000L, 316.50D, 100)',  '0/20 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
+INSERT INTO sys_job values (4, '码入库', 'DEFAULT', 'ryTask.handleCode', '0/50 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
 
 
 -- ----------------------------
@@ -685,3 +744,151 @@ create table gen_table_column (
   update_time       datetime                                   comment '更新时间',
   primary key (column_id)
 ) engine=innodb auto_increment=1 comment = '代码生成业务表字段';
+
+-- ----------------------------
+-- 20、码申请表字段
+-- ----------------------------
+CREATE TABLE `ewem_apply` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL COMMENT '申请名称',
+  `quantity` bigint(20) DEFAULT NULL COMMENT '申请数量',
+  `rule` varchar(30) DEFAULT NULL COMMENT '码规则',
+  `length` int(10) DEFAULT NULL COMMENT '长度',
+  `apply_status` char(1) DEFAULT NULL COMMENT '申请状态',
+  `batch_id` bigint(20) DEFAULT NULL COMMENT '批次ID',
+  `status` char(1) NOT NULL COMMENT '状态（0正常 1停用）',
+  `del_flag` char(1) DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 COMMENT='码申请表';
+
+-- ----------------------------
+-- 21、批次表字段
+-- ----------------------------
+CREATE TABLE `ewem_batch` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `number` varchar(255) DEFAULT NULL COMMENT '批号',
+  `product_id` bigint(20) DEFAULT NULL COMMENT '产品id',
+  `status` char(1) NOT NULL COMMENT '状态（0正常 1停用）',
+  `del_flag` char(1) DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 COMMENT='批次表';
+
+-- ----------------------------
+-- 22、批次环节记录表字段
+-- ----------------------------
+CREATE TABLE `ewem_batch_link` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `batch_id` bigint(20) DEFAULT NULL COMMENT '批次ID',
+  `link_id` bigint(20) DEFAULT NULL COMMENT '环节ID',
+  `attrs` json DEFAULT NULL COMMENT '动态参数',
+  `status` char(1) NOT NULL COMMENT '状态（0正常 1停用）',
+  `del_flag` char(1) DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 COMMENT='批次环节记录表';
+
+-- ----------------------------
+-- 23、产品分类表字段
+-- ----------------------------
+CREATE TABLE `ewem_category` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL COMMENT '名称',
+  `img` varchar(500) DEFAULT NULL COMMENT '图片',
+  `status` char(1) NOT NULL COMMENT '状态（0正常 1停用）',
+  `del_flag` char(1) DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 COMMENT='产品分类表';
+
+-- ----------------------------
+-- 24、码数据表字段
+-- ----------------------------
+CREATE TABLE `ewem_code` (
+  `id` bigint(22) NOT NULL AUTO_INCREMENT,
+  `code` varchar(50) DEFAULT NULL COMMENT '码',
+  `batch_id` bigint(20) DEFAULT NULL COMMENT '申请ID',
+  `scan_num` int(10) DEFAULT '0' COMMENT '扫码次数',
+  `first_scan_time` datetime DEFAULT NULL COMMENT '首次扫码时间',
+  `status` char(1) NOT NULL COMMENT '状态（0正常 1停用）',
+  `del_flag` char(1) DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_code` (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 COMMENT='码数据表';
+
+-- ----------------------------
+-- 25、环节模板表字段
+-- ----------------------------
+CREATE TABLE `ewem_link` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL COMMENT '环节名称',
+  `show_name` varchar(100) DEFAULT NULL COMMENT '前端显示名称',
+  `order_num` int(20) DEFAULT NULL COMMENT '排序',
+  `visible` char(1) DEFAULT NULL COMMENT '是否显示(0显示 1隐藏)',
+  `status` char(1) NOT NULL COMMENT '状态（0正常 1停用）',
+  `del_flag` char(1) DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 COMMENT='环节模板表';
+
+-- ----------------------------
+-- 25、产品表字段
+-- ----------------------------
+CREATE TABLE `ewem_product` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) DEFAULT NULL COMMENT '产品编码',
+  `name` varchar(255) DEFAULT NULL COMMENT '产品名称',
+  `bar_code` varchar(255) DEFAULT NULL COMMENT '产品条码',
+  `category_id` bigint(20) DEFAULT NULL COMMENT '分类ID',
+  `attrs` json DEFAULT NULL COMMENT '动态参数',
+  `content` text COMMENT '富文本描述',
+  `img` varchar(500) DEFAULT NULL COMMENT '产品图片',
+  `video` varchar(255) DEFAULT NULL COMMENT '产品视频',
+  `status` char(1) NOT NULL COMMENT '状态（0正常 1停用）',
+  `del_flag` char(1) DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 COMMENT='产品表';
+
+-- ----------------------------
+-- 25、扫码记录字段
+-- ----------------------------
+CREATE TABLE `ewem_scan_log` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) DEFAULT NULL COMMENT '码',
+  `longitude` varchar(255) DEFAULT NULL COMMENT '经度',
+  `latitude` varchar(255) DEFAULT NULL COMMENT '维度',
+  `user_name` varchar(255) DEFAULT NULL COMMENT '用户名',
+  `scan_time` datetime DEFAULT NULL COMMENT '扫码时间',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 COMMENT='扫码记录';
