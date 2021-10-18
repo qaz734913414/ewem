@@ -46,8 +46,9 @@
 <img src="https://images.gitee.com/uploads/images/2021/1017/151503_5b18caa0_1225299.png" alt=""/>
 <img src="https://images.gitee.com/uploads/images/2021/1017/151515_232c4744_1225299.png" alt=""/>
 
-## 开发者微信
+## 加开发者微进群
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0809/223955_3ef4e39b_1225299.png "合作联系")
+<img src="https://images.gitee.com/uploads/images/2021/1018/212801_10c2ba04_1225299.png" alt=""/>
 
 
 ## 交流群
@@ -57,4 +58,3 @@ QQ群：[![加入QQ群](https://img.shields.io/badge/200735978-blue.svg)](https:
    
 
 <h5>开源不易，请遵守Apache License2.0 协议</h5>
-点击链接加入群聊【一物一码系统交流】：https://jq.qq.com/?_wv=1027&k=TMT5BEIc
