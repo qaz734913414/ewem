@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * 扫码记录对象 ewem_scan_log
@@ -53,11 +53,11 @@ public class ScanLog implements Serializable {
     /**
      * 扫码时间
      */
-    private LocalDateTime scanTime;
+    private Date scanTime;
 
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private Date createTime;
 
 }

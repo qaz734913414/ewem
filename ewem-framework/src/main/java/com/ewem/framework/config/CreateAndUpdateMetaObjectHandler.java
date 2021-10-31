@@ -7,7 +7,6 @@ import com.ewem.common.exception.CustomException;
 import com.ewem.common.utils.SecurityUtils;
 import org.apache.ibatis.reflection.MetaObject;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -23,7 +22,7 @@ public class CreateAndUpdateMetaObjectHandler implements MetaObjectHandler {
             //根据属性名字设置要填充的值
             if (metaObject.hasGetter("createTime")) {
                 if (metaObject.getValue("createTime") == null) {
-                    this.setFieldValByName("createTime", LocalDateTime.now(), metaObject);
+                    this.setFieldValByName("createTime", new Date(), metaObject);
                 }
             }
             if (metaObject.hasGetter("createBy")) {
@@ -51,7 +50,7 @@ public class CreateAndUpdateMetaObjectHandler implements MetaObjectHandler {
             }
             if (metaObject.hasGetter("updateTime")) {
                 if (metaObject.getValue("updateTime") == null) {
-                    this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
+                    this.setFieldValByName("updateTime", new Date(), metaObject);
                 }
             }
         } catch (Exception e) {

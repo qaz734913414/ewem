@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -74,7 +74,7 @@ public class CodeServiceImpl extends ServicePlusImpl<CodeMapper, Code> implement
      */
     @Override
     public int insertCode(Code code) {
-        code.setCreateTime(LocalDateTime.now());
+        code.setCreateTime(new Date());
         return codeMapper.insertCode(code);
     }
 
@@ -86,7 +86,7 @@ public class CodeServiceImpl extends ServicePlusImpl<CodeMapper, Code> implement
      */
     @Override
     public int updateCode(Code code) {
-        code.setUpdateTime(LocalDateTime.now());
+        code.setUpdateTime(new Date());
         return codeMapper.updateCode(code);
     }
 

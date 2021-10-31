@@ -18,4 +18,13 @@ public interface ITraceService {
     AjaxResult trace(String code);
 
 
+    /**
+     * 防伪校验
+     * @param code
+     * @param antiCode 防伪码
+     * @return
+     */
+    AjaxResult antiCheck(String code, String antiCode);
+
+
 }

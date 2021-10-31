@@ -71,4 +71,20 @@ public class Apply extends BaseEntityPlus implements Serializable {
     @TableField(exist = false)
     private Batch batch;
 
+    /**
+     * 生成防伪码
+     */
+    @TableField(exist = false)
+    private Boolean useAnti;
+
+    /**
+     * 防伪码规则
+     */
+    private String antiRule;
+
+    /**
+     * 防伪码长度
+     */
+    private Integer antiLength;
+
 }

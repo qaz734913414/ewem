@@ -49,6 +49,9 @@ public class CodeHandle {
         for (int i = 0; i < apply.getQuantity(); i++) {
             Code code = new Code();
             code.setCode(snowflakeClient.code(apply.getRule(), apply.getLength()));
+            if (StringUtils.isNotEmpty(apply.getAntiRule()) && StringUtils.isNotEmpty(apply.getAntiLength())) {
+                code.setAntiCode(snowflakeClient.antiCode(apply.getAntiRule(), apply.getAntiLength()));
+            }
             code.setBatchId(apply.getBatchId());
             code.setCreateBy(apply.getCreateBy());
             code.setUpdateBy(apply.getCreateBy());

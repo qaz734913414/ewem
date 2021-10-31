@@ -30,7 +30,6 @@ public class DefaultSnowflakeGenerator extends AbstractSnowflake {
         if (workerId > bitsAllocator.getMaxWorkerId()) {
             throw new RuntimeException("Worker id " + workerId + " exceeds the max " + bitsAllocator.getMaxWorkerId());
         }
-        logger.info("Initialized bits(1, {}, {}, {}) for workerID:{}", timeBits, workerIdBits, sequenceBits, workerId);
     }
 
 

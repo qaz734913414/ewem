@@ -15,9 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -68,7 +67,7 @@ public class TraceServiceImpl implements ITraceService {
 
         // 设置扫码次数及时间
         code.setScanNum(code.getScanNum() + 1);
-        code.setFirstScanTime(StringUtils.isEmpty(code.getFirstScanTime()) ? LocalDateTime.now() : code.getFirstScanTime());
+        code.setFirstScanTime(StringUtils.isEmpty(code.getFirstScanTime()) ? new Date() : code.getFirstScanTime());
         codeService.updateById(code);
 
         TraceVo traceVo = new TraceVo();
@@ -77,13 +76,20 @@ public class TraceServiceImpl implements ITraceService {
         traceVo.setLinks(links);
         traceVo.setScanNum(code.getScanNum());
         traceVo.setFirstScanTime(code.getFirstScanTime());
+        traceVo.setUseAnti(StringUtils.isNotEmpty(code.getAntiCode()));
 
         ScanLog scanLog = new ScanLog();
         scanLog.setCode(c);
-        scanLog.setScanTime(LocalDateTime.now());
+        scanLog.setScanTime(new Date());
         scanLogService.save(scanLog);
 
         return AjaxResult.success(traceVo);
 
+    }
+
+    @Override
+    public AjaxResult antiCheck(String c, String antiCode) {
+        Code code = codeService.selectCodeByCode(c);
+        return AjaxResult.success(StringUtils.isNotEmpty(code) && antiCode.equals(code.getAntiCode()));
     }
 }
