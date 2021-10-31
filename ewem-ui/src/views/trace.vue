@@ -7,6 +7,10 @@
     margin: 0;
   }
 
+  .anti_search {
+    border-radius: 70px !important;
+  }
+
 </style>
 <template>
   <div class="app-container home" style="background-color: #f2f6f9">
@@ -23,8 +27,19 @@
         <br>
         <div style="text-align: center;color: #129f5d;font-size: 17px">
           <span>本次为第<strong style="color: red">{{scanNum}}</strong>次查询</span><br>
-          <span>首次查询时间：<strong>{{firstScanTime}}</strong></span>
+          <span>首次查询时间：<strong>{{ parseTime(firstScanTime) }}</strong></span>
         </div>
+      </el-col>
+      <el-col :span="24">
+        <br>
+        <el-input placeholder="防伪码验证" class="anti_search" v-model="antiCode">
+          <el-button slot="append" icon="el-icon-search" @click="antiCodeCheck"/>
+          <br>
+        </el-input>
+        <br>
+        <br>
+        <el-alert title="验证成功" type="success" v-show="antiSuccess" show-icon center :closable="false"/>
+        <el-alert title="验证失败" type="error" v-show="antiError" show-icon center :closable="false"/>
       </el-col>
     </el-row>
     <el-row>
@@ -76,7 +91,7 @@
 </template>
 <script>
 
-  import { getTrace } from '@/api/ewem/trace'
+  import { getTrace, antiCheck } from '@/api/ewem/trace'
 
   export default {
     name: 'Trace',
@@ -87,6 +102,9 @@
         productName: undefined,
         categoryName: undefined,
         scanNum: undefined,
+        antiCode: undefined,
+        antiSuccess: false,
+        antiError: false,
         firstScanTime: undefined,
         productAttrs: [],
         productImgs: [],
@@ -96,7 +114,6 @@
     created() {
       const c = this.$route.query.c
       getTrace(c).then(response => {
-        console.log(response)
         const code = response.code
         if (code === 200) {
           const data = response.data
@@ -115,7 +132,24 @@
 
       })
     },
-    methods: {}
+    methods: {
+      antiCodeCheck() {
+        const c = this.$route.query.c
+        const antiCode = this.antiCode
+        if (antiCode == null || antiCode === '') {
+          return
+        }
+        antiCheck(c, antiCode).then(res => {
+          if (res.data) {
+            this.antiSuccess= true
+            this.antiError = false
+            return
+          }
+          this.antiSuccess = false
+          this.antiError = true
+        })
+      }
+    }
   }
 </script>
 

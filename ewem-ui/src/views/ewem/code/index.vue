@@ -58,6 +58,7 @@
       <el-table-column type="selection" width="55" align="center"/>
       <el-table-column label="ID" align="center" prop="id"/>
       <el-table-column label="码" align="center" prop="code"/>
+      <el-table-column label="防伪码" align="center" prop="antiCode"/>
       <el-table-column label="批次号" align="center" prop="batch.number"/>
       <el-table-column label="扫码次数" align="center" prop="scanNum"/>
       <el-table-column label="首次扫码时间" align="center" prop="firstScanTime"/>

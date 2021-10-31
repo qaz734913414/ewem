@@ -95,6 +95,8 @@
       <el-table-column label="申请数量" align="center" prop="quantity"/>
       <el-table-column label="码规则" align="center" prop="rule" :formatter="ruleFormat"/>
       <el-table-column label="长度" align="center" prop="length"/>
+      <el-table-column label="防伪码规则" align="center" prop="antiRule" :formatter="antiRuleFormat"/>
+      <el-table-column label="防伪码长度" align="center" prop="antiLength"/>
       <el-table-column label="申请状态" align="center" prop="applyStatus">
         <template slot-scope="scope">
           <dict-tag :options="applyStatusOptions" :value="scope.row.applyStatus"/>
@@ -138,7 +140,7 @@
 
     <!-- 添加或修改码申请对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="90px">
         <el-form-item label="选择批次" prop="batchId">
           <el-select v-model="form.batchId">
             <el-option
@@ -171,6 +173,20 @@
         <el-form-item label="长度" prop="length">
           <el-input-number v-model="form.length" :min="17" :max="25" placeholder="请输入长度"/>
         </el-form-item>
+        <el-form-item label="生成防伪码" prop="useAnti">
+          <el-switch v-model="form.useAnti"/>
+        </el-form-item>
+        <div v-show="form.useAnti">
+          <el-form-item label="防伪码规则" prop="antiRule">
+            <el-select v-model="form.antiRule" placeholder="请选择防伪码规则">
+              <el-option label="数字" value="NUMBER"/>
+              <el-option label="数字+字母" value="LETTER_NUMBER"/>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="防伪码长度" prop="antiLength">
+            <el-input-number v-model="form.antiLength" :min="6" :max="12" placeholder="请输入防伪码长度"/>
+          </el-form-item>
+        </div>
         <el-form-item label="状态">
           <el-radio-group v-model="form.status">
             <el-radio
@@ -225,6 +241,8 @@
         open: false,
         // 码规则字典
         ruleOptions: [],
+        // 防伪码规则字典
+        antiRuleOptions: [],
         // 批次字典
         batchList: [],
         // 申请状态字典
@@ -268,6 +286,7 @@
       this.getList()
       this.getDicts('ewem_qrcode_rule').then(response => {
         this.ruleOptions = response.data
+        this.antiRuleOptions = response.data
       })
       this.getDicts('ewem_apply_status').then(response => {
         this.applyStatusOptions = response.data
@@ -296,6 +315,10 @@
       ruleFormat(row, column) {
         return this.selectDictLabel(this.ruleOptions, row.rule)
       },
+      // 码规则字典翻译
+      antiRuleFormat(row, column) {
+        return this.selectDictLabel(this.antiRuleOptions, row.antiRule)
+      },
       // 申请状态字典翻译
       applyStatusFormat(row, column) {
         return this.selectDictLabel(this.applyStatusOptions, row.applyStatus)
@@ -321,6 +344,9 @@
           batchId: undefined,
           status: '0',
           delFlag: undefined,
+          useAnti: undefined,
+          antiRule: undefined,
+          antiLength: undefined,
           createBy: undefined,
           createTime: undefined,
           updateBy: undefined,
@@ -352,6 +378,9 @@
         this.title = '添加码申请'
         this.form.length = 17
         this.form.rule = 'LETTER_NUMBER'
+        this.form.antiLength = 6
+        this.form.antiRule = 'NUMBER'
+        this.form.useAnti = false
       },
 
       /** 修改按钮操作 */
@@ -364,6 +393,7 @@
           this.form = response.data
           this.open = true
           this.title = '修改码申请'
+          this.form.useAnti = this.form.antiRule != null && this.form.antiRule !== ''
         })
       },
       /** 提交按钮 */
@@ -371,6 +401,10 @@
         this.$refs['form'].validate(valid => {
           if (valid) {
             this.buttonLoading = true
+            if (!this.form.useAnti){
+              this.form.antiRule = ''
+              this.form.antiLength = 0
+            }
             if (this.form.id != null) {
               updateApply(this.form).then(response => {
                 this.msgSuccess('修改成功')

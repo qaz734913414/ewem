@@ -53,15 +53,6 @@
       @pagination="getList"
     />
 
-    <!-- 添加或修改扫码记录对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button :loading="buttonLoading" type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
-      </div>
-    </el-dialog>
   </div>
 </template>
 

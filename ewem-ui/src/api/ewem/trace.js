@@ -7,3 +7,11 @@ export function getTrace(code) {
     method: 'get'
   })
 }
+
+// 防伪验证
+export function antiCheck(code, antiCode) {
+  return request({
+    url: '/trace/anti/' + code + '?antiCode=' + antiCode,
+    method: 'get'
+  })
+}
